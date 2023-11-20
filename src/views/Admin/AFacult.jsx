@@ -16,6 +16,7 @@ import Cookies from "universal-cookie";
 import { allData } from "../../data/basicD";
 import { Link } from "react-router-dom";
 import { getCookie } from "../../action/type";
+import AFNavbar from "../../components/AFNavbar";
 // import AddIcon from '@mui/icons-material/Add';
 
 const style = {
@@ -319,10 +320,10 @@ export default function AFacult() {
             return;
         }
         else {
-            axios.post("http://localhost:8000/api/faculty/", { "faculty_name": addFac.faculty_name, "department": addFac.department }, { withCredentials: true },
+            axios.post("http://localhost:8000/api/faculty/", { "faculty_name": addFac.faculty_name, "department": addFac.department },
                 {
                     headers: {
-                        'X-CSRFToken': cookies.get('csrftoken')
+                        'Authorization': `Token ${getCookie('token')}`
                     }
                 })
                 .then((res) => {
@@ -438,7 +439,8 @@ export default function AFacult() {
             <div className="divf fdirc fullbg dashMain">
                 <ToastContainer />
                 <div className="dashbgI"></div>
-                <Link className="uTypeN" to="/admin">Admin Dashboard</Link>
+                {/* <Link className="uTypeN" to="/admin">Admin Dashboard</Link> */}
+                <AFNavbar />
                 <section className="paddM">
                     <form>
                         <div className="divf fdirc comBox gapM">

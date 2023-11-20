@@ -16,6 +16,7 @@ import Cookies from "universal-cookie";
 import { allData } from "../../data/basicD";
 import { Link } from "react-router-dom";
 import { getCookie } from "../../action/type";
+import AFNavbar from "../../components/AFNavbar";
 // import AddIcon from '@mui/icons-material/Add';
 
 export default function ASubj() {
@@ -137,7 +138,8 @@ export default function ASubj() {
             <div className="divf fdirc fullbg dashMain">
                 <ToastContainer />
                 <div className="dashbgI"></div>
-                <Link className="uTypeN" to="/admin">Admin Dashboard</Link>
+                {/* <Link className="uTypeN" to="/admin">Admin Dashboard</Link> */}
+                <AFNavbar />
                 <section className="paddM">
                     <form>
                         <div className="divf fdirc comBox gapM">

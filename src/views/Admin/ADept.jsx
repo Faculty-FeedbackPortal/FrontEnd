@@ -18,6 +18,7 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 import { Link } from "react-router-dom";
 import { getCookie } from "../../action/type";
 import Swal from "sweetalert2";
+import AFNavbar from "../../components/AFNavbar";
 // import 'sweetalert2/src/sweetalert2.scss'
 // import AddIcon from '@mui/icons-material/Add';
 
@@ -213,8 +214,36 @@ export default function ADept() {
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
+                    // const { title, content, file } = fileU;
+                    // const allBody = { title, content, file };
+                    // console.log(allBody);
+                    async function postFile() {
+                        await axios.post("http://localhost:8000/api/departmentbulk/", { "file": fileU },
+                            {
+                                headers: {
+                                    "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                    // "Accept": "application/json",
+                                    'Authorization': `Token ${getCookie('token')}`
+                                }
+                            }
+                        )
+                            .then(
+                                (res) => {
+                                    // console.log(res)
+                                    Swal.fire('Saved!', '', 'success')
+                                    setOpen(false);
+                                    fetchDept();
+                                }
+                            )
+                            .catch(
+                                (err) => {
+                                    // console.log(err.response)
+                                    Swal.fire('Changes are not saved', '', 'info')
+                                }
+                            )
+                    }
+                    postFile();
 
-                    Swal.fire('Saved!', '', 'success')
                 } else if (result.isDenied) {
                     Swal.fire('Changes are not saved', '', 'info')
                 }
@@ -255,7 +284,8 @@ export default function ADept() {
             <div className="divf fdirc fullbg dashMain">
                 <ToastContainer />
                 <div className="dashbgI"></div>
-                <Link className="uTypeN" to="/admin">Admin Dashboard</Link>
+                {/* <Link className="uTypeN" to="/admin">Admin Dashboard</Link> */}
+                <AFNavbar />
                 <section className="paddM">
                     <div className="divf jusSB">
                         <p className="dashTT1">Departments data</p>

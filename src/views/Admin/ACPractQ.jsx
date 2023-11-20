@@ -17,6 +17,7 @@ import { allData } from "../../data/basicD";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { getCookie } from "../../action/type";
+import AFNavbar from "../../components/AFNavbar";
 // import AddIcon from '@mui/icons-material/Add';
 
 const style = {
@@ -121,7 +122,8 @@ export default function ACPractQ() {
             <div className="divf fdirc fullbg dashMain">
                 <ToastContainer />
                 <div className="dashbgI"></div>
-                <p className="uTypeN"><Link to="/admin" >Admin Dashboard</Link></p>
+                {/* <p className="uTypeN"><Link to="/admin" >Admin Dashboard</Link></p> */}
+                <AFNavbar />
                 <section className="paddM">
                     <div className="divf jusSB">
                         <p className="dashTT1">Practical Questions</p>

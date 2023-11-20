@@ -4,6 +4,9 @@ import { useState } from "react";
 import { createContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import axios from "axios";
+import { notifyE, notifyS } from "../../src/funcs/func1";
+import { getCookie, isAuthenticated } from "../action/type";
 
 const AppContext = createContext()
 
@@ -12,8 +15,30 @@ export default function AppProvider({ children }) {
     const cookies = new Cookies();
     const navigate = useNavigate();
     const flname = fullLocation.pathname;
+    // const [Isauthenticated, setIsAuthenticated] = useState('')
     // console.log(fullLocation);
     // console.log(flname.split("/"));
+
+    const isauthenticated = async () => {
+        const result = await axios.get("http://localhost:8000/api/authenticated/", {
+            headers: {
+                'Authorization': `Token ${getCookie('token')}`
+            }
+        })
+            .then((res) => {
+                // setIsAuthenticated(res.data['isAuthenticated']);
+                return res.data.isAuthenticated
+            })
+            .catch((err) => {
+                // notifyE("Can't fetch mapping, please try again!");
+                return false;
+            })
+
+        // console.log(result);
+        return result;
+
+
+    }
 
     useEffect(() => {
         // console.log(fullLocation.pathname);
@@ -33,9 +58,27 @@ export default function AppProvider({ children }) {
         //     }
         // }
         // var ttoken = cookies.get("token", { path: "/" });
-        // if(loca)
+        // if(loca)'
+        var isAdminAuth = isauthenticated();
+        const routesA = flname.split("/");
+        if (routesA[1] == "admin" && !getCookie('token')) {
+            // if(!isAdminAuth){
+            if (routesA[2] != "register") {
+                navigate("/admin/login");
+            }
 
-        console.log(flname.split("/"));
+            // return false;
+
+        }
+        else if (routesA[1] == "admin" && routesA[2] == "login" && isAdminAuth) {
+            navigate("/admin")
+
+        }
+        else if (routesA[1] == "admin" && isAuthenticated === false) {
+            if (!isAdminAuth) {
+                navigate("/admin/login");
+            }
+        }
     }, [flname]);
 
     return (
@@ -46,5 +89,3 @@ export default function AppProvider({ children }) {
 export const AppState = () => {
     return useContext(AppContext)
 }
-
-

@@ -18,14 +18,14 @@ export default function AFNavbar() {
                     >
                         <span>{">>"}</span>
                     </button>
-                    <Link className="linkAnim1">Admin Dashboard</Link>
+                    <Link className="linkAnim1" to="/admin">Admin Dashboard</Link>
                     <div className="divf quickLSect" style={{ "gap": "1rem" }}>
                         <p>|</p>
                         <div className="divf quicklk">
                             <p className="col-b">Quick links:</p>
-                            <Link className="linkAnim1">Departments</Link>
-                            <Link className="linkAnim1">Subjects</Link>
-                            <Link className="linkAnim1">Faculties</Link>
+                            <Link className="linkAnim1" to="/admin/departments">Departments</Link>
+                            <Link className="linkAnim1" to="/admin/subjects">Subjects</Link>
+                            <Link className="linkAnim1" to="/admin/faculties">Faculties</Link>
                             <div
                                 onMouseLeave={() => {
                                     document.getElementById("idHovDash").classList.remove("showHD")
@@ -42,8 +42,8 @@ export default function AFNavbar() {
                                         document.getElementById("idHovDash").classList.add("showHD")
                                     }}
                                 >
-                                    <Link className="linkAnim1">Practical Questions</Link>
-                                    <Link className="linkAnim1">Theory Questions</Link>
+                                    <Link className="linkAnim1" to="/admin/practical-questions">Practical Questions</Link>
+                                    <Link className="linkAnim1" to="/admin/theory-questions">Theory Questions</Link>
                                 </div>
 
                             </div>

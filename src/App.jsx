@@ -13,6 +13,7 @@ import ALogin from "./components/ALogin";
 import ACTheoryQ from "./views/Admin/ACTheoryQ";
 import ACPractQ from "./views/Admin/ACPractQ";
 import ReportA from "./components/ReportA";
+import ARegister from "./components/AReg";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login/details" element={<LoginDet />} />
           <Route path="/admin" element={<ADash />} />
           <Route path="/admin/login" element={<ALogin />} />
+          <Route path="/admin/register" element={<ARegister />} />
           <Route path="/admin/departments" element={<ADept />} />
           <Route path="/admin/subjects" element={<ASubj />} />
           <Route path="/admin/faculties" element={<AFacult />} />
