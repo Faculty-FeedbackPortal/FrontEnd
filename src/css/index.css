@@ -1,0 +1,679 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@500&family=Nanum+Gothic+Coding&family=Roboto:wght@500&family=Rubik&family=Share+Tech&family=Ubuntu:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+    /* font-weight: 500; */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+    overflow-wrap: break-word;
+    scroll-behavior: smooth;
+}
+
+img {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+:root {
+    --som-dark: #b7202f;
+    --som-lt: #ed1b24;
+    --somColor: #97081c;
+    --somTColor: #005baa;
+    --pTop: 4rem;
+}
+
+body {
+    color: var(--somColor);
+}
+
+::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.5rem;
+}
+
+::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
+    /* border: 0.3rem solid rgb(255, 255, 255); */
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0.9rem;
+    background: grey;
+    background-clip: padding-box;
+    border: 0.1rem solid rgb(255, 255, 255);
+    /* box-shadow: 0 -100vh 0 100vh var(--lightSomColor); */
+}
+
+input {
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+a {
+    color: var(--som-dark);
+}
+
+button {
+    border: none;
+    outline: none;
+    background: none;
+    transition: 0.2s all ease-out;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+
+}
+
+.fullW {
+    width: 100%;
+}
+
+.tL {
+    text-align: left;
+    width: 100%;
+}
+
+.fullbg {
+    width: 100%;
+    height: 100%;
+    /* background: wheat; */
+    /* padding:1rem; */
+    /* gap: 0.5rem; */
+    padding-top: var(--pTop);
+    padding-bottom: 1rem;
+}
+
+.divf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fwrap {
+    flex-wrap: wrap;
+}
+
+.fullWH {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.wFull {
+    width: 100%;
+}
+
+.headT {
+    background: rgb(255, 239, 210);
+    padding: 0.5rem;
+    font-weight: 600;
+}
+
+.fdirc {
+    flex-direction: column;
+}
+
+.jusSB {
+    justify-content: space-between;
+}
+
+.jusStart {
+    justify-content: start;
+}
+
+.col-b {
+    color: black;
+}
+
+/*  */
+.MuiButton-outlinedPrimary {
+    border: 0.1rem solid var(--som-dark) !important;
+    color: var(--som-dark) !important;
+    background: rgba(255, 255, 255, 0.747) !important;
+    backdrop-filter: blur(1rem) !important;
+}
+
+.MuiButton-containedPrimary {
+    /* border: 0.1rem solid var(--som-dark) !important; */
+    background: var(--som-dark) !important;
+    color: white !important;
+}
+
+.comBox {
+    background: rgba(255, 255, 255, 0.76);
+    backdrop-filter: blur(1rem);
+    border-radius: 0.4rem;
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    gap: 0.4rem;
+}
+
+/*  */
+
+.specIns {
+    padding: 0.4rem;
+    font-size: 1.1rem;
+    border-radius: 0.3rem;
+}
+
+.specIns:focus {
+    outline: 0.2rem solid var(--som-dark);
+}
+
+.specBut {
+    padding: 0.4rem;
+    /* border: 0.18rem solid var(--somColor); */
+    background: var(--som-dark);
+    border-radius: 0.3rem;
+    font-size: 1.1rem;
+    /* background: white; */
+    color: white;
+    border-radius: 0.3rem;
+}
+
+.pLeft {
+    padding-left: 11rem !important;
+}
+
+.mainContent {
+    justify-content: start;
+    height: 100%;
+    width: 100%;
+    /* background: wheat; */
+    min-height: calc(100vh - var(--pTop));
+    padding: 0.5rem;
+}
+
+.infoC {
+    background: rgba(250, 212, 212, 0.5);
+    /* margin: 0.5rem 1rem; */
+    width: 100%;
+    border-radius: 0.4rem;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    column-gap: 10rem;
+    justify-content: start;
+    padding: 0.5rem 0.5rem;
+    font-size: 1.2rem;
+    backdrop-filter: blur(1rem);
+    margin: 0.5rem;
+}
+
+.infP span {
+    color: black;
+    margin-right: 0.3rem;
+}
+
+.infP span::after {
+    content: ":";
+}
+
+.sliderSub {
+    position: fixed;
+    left: 0;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(1rem);
+    /* margin: 0.5rem 1rem; */
+    width: 10rem;
+    height: 100%;
+    height: calc(100vh - var(--pTop));
+    /* justify-content: start; */
+    /* border-radius: 1.5rem; */
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    /* gap: 0.8rem; */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* border-right: 0.2rem solid var(--somColor); */
+    box-shadow: 0.1rem 0.3rem 0.5rem #005baa88;
+}
+
+.sliderSec {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(1rem);
+    /* padding: 0.5rem; */
+    width: 100%;
+    gap: 0.5rem;
+    border-radius: 0.3rem;
+    /* overflow: hidden; */
+    border: 0.1rem solid rgb(100, 100, 100);
+    margin: 0.8rem 0;
+    z-index: 1;
+    /* overflow: auto; */
+}
+
+.allSlSec {
+    padding: 0.5rem;
+    gap: 0.8rem;
+    width: 100%;
+
+}
+
+.divIndS {
+    position: relative;
+    width: 100%;
+    background: none;
+    border-radius: 0.3rem;
+    /* z-index: 1; */
+    /* background: wheat; */
+}
+
+.indSub {
+    /* background: rgba(182, 182, 182, 0.5); */
+    border: none;
+    outline: none;
+    padding: 0.3rem 0.6rem;
+    font-size: 1.3rem;
+    border-radius: 0.3rem;
+    /* margin: 0 0.5rem; */
+    /* cursor: pointer;  */
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    cursor: default;
+    /* color: var(--somColor); */
+}
+
+.overTH {
+    /* width: 5rem; */
+    /* overflow: hidden; */
+}
+
+.indSub:hover,
+.indSub:focus {
+    opacity: 1;
+}
+
+.divIndS .hovP {
+    display: none;
+    position: absolute;
+    /* left: 10rem; */
+    top: calc(100% + 0.5rem);
+    /* left: 10rem; */
+    background: white;
+    box-shadow: 0 0 0.1rem grey;
+    z-index: 10;
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    transform: translateY(3rem);
+    opacity: 0;
+    transition: 0.2s all ease-out;
+    z-index: 1000;
+}
+
+.divIndS:hover .hovP {
+    display: block;
+    opacity: 1;
+    z-index: 1000;
+    transform: translateY(0);
+}
+
+.ccSub {
+    background: var(--somTColor) !important;
+    color: white;
+}
+
+.ccSub:hover {
+    background: var(--somTColor);
+}
+
+
+
+.inSH {
+    background: var(--somTColor);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 0.4rem;
+    font-size: 1.3rem;
+    z-index: 1;
+}
+
+.fg1 {
+    flex-grow: 1;
+}
+
+.fpNameS {
+    text-align: left;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    background: rgba(226, 0, 0, 0.5);
+    border-radius: 0.4rem;
+    color: white;
+    padding: 0.5rem 1rem;
+    backdrop-filter: blur(1rem);
+    width: 100%;
+}
+
+/* table questions */
+.quesT {
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    margin: 1rem 0;
+    border-radius: 0.4rem;
+
+
+}
+
+.quesT table {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(1rem);
+    text-align: center;
+    /* border-radius: 0.4rem; */
+    /* overflow: hidden; */
+}
+
+.quesT thead {
+    background: var(--somColor);
+    color: white;
+    font-size: 1.1rem;
+}
+
+.quesT table,
+.quesT thead,
+.quesT tr,
+.quesT td,
+.quesT th {
+    border: 0.13rem solid rgb(163, 163, 163);
+    border-collapse: collapse;
+}
+
+.quesT th,
+.quesT td {
+    padding: 0.3rem;
+}
+
+.quesText {
+    font-size: 1.1rem;
+    background: white;
+    width: fit-content;
+    border: none;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+
+/* dropdown inputs */
+.mainInsQ {
+    /* background: wheat; */
+    width: fit-content;
+    margin: auto;
+}
+
+
+.insD {
+    position: relative;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    border-bottom: 0.13rem solid var(--somColor);
+    box-shadow: inset 0 0 0.4rem rgb(255, 203, 203);
+    width: 10rem;
+    height: 2rem;
+    overflow: hidden;
+    cursor: text;
+    border: 0.13rem solid var(--somColor);
+    background: rgba(255, 243, 221, 0.795);
+
+}
+
+.insDDone {
+    border: 0.13rem solid var(--somColor);
+    /* background: none; */
+    background: #ffffff;
+    color: var(--somColor);
+    /* box-shadow: 0 0 0.01rem 0.1rem rgb(255, 150, 150); */
+    font-weight: bold;
+}
+
+.inputtedIns {}
+
+.inputtedIns::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 0.5rem;
+    height: 80%;
+    width: 0.12rem;
+    background: var(--som-dark);
+    animation: infinite 1s cursText;
+}
+
+@keyframes cursText {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.insDCurr::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.5rem;
+    height: 0.5rem;
+    background: rgb(255, 230, 230);
+    /* box-shadow: 0 0 0.1rem 0.3rem rgb(0, 0, 0); */
+    border: 0.2rem solid rgb(253, 167, 167);
+    border-radius: 50%;
+    animation: expandIns normal 1s linear infinite;
+}
+
+@keyframes expandIns {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+        width: 12rem;
+        height: 12rem;
+    }
+}
+
+.mainInsQ:hover .dropIns {
+    clip-path: circle(99.8% at 50% 0);
+}
+
+.dropIns {
+    position: absolute;
+    top: 0;
+    /* z-index: 5; */
+    background: rgb(206, 206, 206);
+    width: 12rem;
+    padding: 0.1rem;
+    border-radius: 0.4rem;
+    gap: 0.1rem;
+    clip-path: circle(0% at 50% 0);
+    transition: 0.2s all ease-out;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.dropIns button {
+    position: relative;
+    width: 100%;
+    padding: 0.3rem 0;
+    margin: 0;
+    background: rgb(255, 244, 244);
+    color: rgb(58, 0, 0);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.2s all ease-out;
+    /* border-top: 0.1rem solid grey;
+    border-bottom: 0.1rem solid grey; */
+}
+
+.dropIns button:hover {
+    background: rgb(206, 206, 206);
+    color: black;
+}
+
+input[type=file] {
+    background: rgb(228, 228, 228);
+    width: 100%;
+    /* width: min-content; */
+    color: black;
+    /* color: wheat; */
+    padding: 0.4rem;
+    font-size: 1rem;
+    border: 0.15rem solid var(--somColor);
+    border-style: dotted;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+input[type=file]::file-selector-button {
+    font-size: 1rem;
+    background: var(--somColor) !important;
+    color: white;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    /* background-color: wheat !important; */
+    border: none;
+    cursor: pointer;
+}
+
+.swal2-container {
+    z-index: 10000 !important;
+}
+
+.orShowT {
+    position: relative;
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    color: black;
+    width: 100%;
+    text-align: center;
+}
+
+.orShowT::before {
+    position: absolute;
+    content: "";
+    width: 40%;
+    left: 5%;
+    top: 50%;
+    height: 0.1rem;
+    border-top: 0.12rem solid black;
+    border-top-style: dashed;
+}
+
+.orShowT::after {
+    position: absolute;
+    content: "";
+    width: 40%;
+    right: 5%;
+    top: 50%;
+    height: 0.1rem;
+    border-top: 0.12rem solid black;
+    border-top-style: dashed;
+}
+
+/* fgap */
+.fGapS {
+    gap: 0.3rem;
+}
+
+/* relative pos */
+.posR {
+    position: relative;
+}
+
+/* font size */
+.f1 {
+    font-size: 1rem;
+}
+
+.f1-1 {
+    font-size: 1.1rem;
+}
+
+.f1-2 {
+    font-size: 1.2rem;
+}
+
+.f1-5 {
+    font-size: 1.5rem;
+}
+
+.f2 {
+    font-size: 2rem;
+}
+
+
+/* finish font size */
+
+/* padding */
+.paddM {
+    padding: 1.5rem;
+}
+
+/* gap */
+.gapS {
+    gap: 0.3rem;
+}
+
+.gapSM {
+    gap: 0.5rem;
+}
+
+.gapM {
+    gap: 1rem;
+}
+
+/* gap ends */
+
+/*  */
+.mUpM {
+    margin-top: 1rem;
+}
+
+.fColorB {
+    color: black !important;
+}
+
+.modMaj {
+    overflow: auto !important;
+}
+
+/*  */

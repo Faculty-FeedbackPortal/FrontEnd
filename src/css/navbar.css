@@ -1,0 +1,40 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    height: 4rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1rem);
+    /* background: rgb(92, 92, 92); */
+    /* border-bottom: 0.13rem solid var(--som-dark); */
+    padding: 0.3rem;
+    width: 100%;
+    z-index: 100;
+}
+
+.somLogo {
+    width: 2.8rem;
+    mix-blend-mode: multiply;
+}
+
+.kjsit {
+    max-width: 20rem;
+    font-size: 0.7rem;
+    color: black;
+}
+
+.kjhead {
+    font-size: 0.9rem;
+    color: var(--som-dark);
+    font-weight: 590;
+}
+
+.somTrust {
+    height: 3rem;
+}
+
+.fpHead {
+    text-decoration: underline;
+    text-decoration-color: black;
+    font-size: 1.3rem !important;
+    font-weight: 600;
+}

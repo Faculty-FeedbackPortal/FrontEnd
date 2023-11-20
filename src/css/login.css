@@ -1,0 +1,56 @@
+.loginC {
+    background: rgba(255, 254, 251, 0.3);
+    /* border: 0.15rem solid var(--somColor); */
+    box-shadow: 0 0 0.05rem 0.2rem rgba(173, 0, 0, 0.4);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    gap: 1rem;
+    backdrop-filter: blur(2rem);
+    margin: 2rem 0;
+    /* animation: anLogC 3s linear infinite; */
+}
+
+@keyframes anLogC {
+    0% {
+        box-shadow: 0 0 0.1rem 0.3rem transparent;
+        border: 0.2rem solid rgb(255, 146, 146);
+    }
+
+    50% {
+        box-shadow: 0 0 1rem 0.1rem rgba(255, 1, 1, 0.377);
+        border: 0.2rem solid rgb(177, 40, 40);
+    }
+
+    100% {
+        box-shadow: 0 0 0.1rem 0.3rem transparent;
+        border: 0.2rem solid rgb(255, 146, 146);
+    }
+}
+
+.insLU {
+    border: 0.2rem solid transparent;
+    border-bottom: 0.2rem solid var(--somColor);
+    font-size: 1.3rem;
+    padding: 0.4rem;
+    transition: 0.2s all ease-out;
+    width: 15rem;
+}
+
+.insLU:focus {
+    border: 0.2rem solid var(--somColor);
+    outline: none;
+    border-radius: 0.4rem;
+}
+
+.divInsL p {
+    width: 10rem;
+    text-align: center;
+}
+
+.doLog {
+    background: var(--somColor);
+    color: white;
+    padding: 0.6rem;
+    border-radius: 0.4rem;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,103 @@
+.aPaddF {
+    padding-top: 8rem;
+}
+
+.headToR {
+    
+    background: rgba(255, 255, 255, 0.678);
+    backdrop-filter: blur(1rem);
+    padding: 0.3rem 0.4rem;
+    border-radius: 0.4rem;
+    width: clamp(70vw, 50rem, 80vw);
+    width: 90%;
+    margin-top: 1.5rem;
+}
+
+.carReport {
+    width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+    justify-content: left;
+    margin: 0 2rem;
+    height: 100%;
+}
+
+.mainR {
+    margin: 1.5rem;
+    background: white;
+    border: 0.15rem solid var(--somTColor);
+    padding: 0.9rem;
+    /* width: clamp(30rem, 90vw, 60rem); */
+    width: 60rem;
+    height: 100%;
+    /* overflow: scroll; */
+
+    gap: 0.5rem;
+    /* align-items: start;
+    justify-content: start; */
+}
+
+.mainR section {
+    width: 100%;
+}
+
+.pdiv1 {
+    gap: 0.5rem;
+    margin: 0.4rem;
+}
+
+.reportT {
+    font-size: 1rem;
+}
+
+.boldT {
+    font-weight: bold;
+}
+
+.reportT {
+    margin: 1rem 0;
+}
+
+.reportT,
+.reportT th,
+.reportT td,
+.reportT tr {
+    border: 0.12rem solid black;
+    border-collapse: collapse;
+}
+
+.reportT th {
+    text-align: center;
+}
+
+.reportT td {
+    text-align: left;
+    color: black;
+}
+
+.reportT th,
+.reportT td {
+    padding: 0.3rem 0.4rem;
+}
+
+.dangerZ {
+    width: 100%;
+    align-items: start;
+    gap: 0.4rem;
+}
+
+.dangerZ p {
+    /* text-align: left;
+    width: 100%; */
+    background: var(--somColor);
+    color: white;
+    padding: 0.2rem 0.3rem;
+    font-size: 1rem;
+}
+
+.sectDivider {
+    border-top: 0.3rem dashed black;
+    width: 10rem;
+    height: 0.1rem;
+    margin: 2rem;
+}
