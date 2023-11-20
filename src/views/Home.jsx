@@ -239,7 +239,7 @@ export default function Home() {
         Q10: 0,
         Q11: 0,
         Q12: 0,
-        comment: ""
+        comment: "",
       }
       setFeedD({ ...statusExist });
       cookies.set("theoryFeed", JSON.stringify({ ...statusExist }), { path: "/", maxAge: 18000 });
@@ -267,15 +267,18 @@ export default function Home() {
     var cI = Number(cookies.get("currQ"));
     // var statusExist = cookies.get("theoryFeed");
     var isTheory = (cI > fetMD.theory.length ? false : true);
+    var totSubj = fetMD.theory.length + fetMD.practical.length;
     // console.log(theory.length);
     var uDets = cookies.get("user2");
     var dumData = { ...feedData };
     const date = new Date();
 
-    if (!dumData.user && !dumData.department) {
+    if (!dumData.user || !dumData.department || !dumData.comment) {
       notifyE("Fill all details");
       return;
     }
+    // console.log(dumData);
+
     if (isTheory) {
       var flag = true;
       for (var i = 0; i < theory.length; i++) {
@@ -289,6 +292,31 @@ export default function Home() {
         notifyE("Fill all details");
         return;
       }
+      await axios.post("http://localhost:8000/feed/theory_feedback/", dumData)
+        .then((data) => {
+          if (cI >= totSubj) {
+            notifyS({ msg: "Thank you for filling out the feedback survey! You will be logged out soon!" });
+            setTimeout(() => {
+              cookies.remove("user", { path: "/" });
+              cookies.remove("currQ", { path: "/" });
+              cookies.remove("user2", { path: "/" });
+              cookies.remove("theoryFeed", { path: "/" });
+              navigate("/login");
+            }, 2000)
+          }
+          else {
+            notifyS({ msg: "Successful" });
+            cookies.set("currQ", cI + 1, { path: "/", maxAge: 18000, });
+            cookies.remove("theoryFeed", { path: "/" });
+
+            doSetFeedStatus();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          notifyE("Some error occurred, please try again!");
+
+        })
     }
     else {
       var flag = true;
@@ -303,15 +331,42 @@ export default function Home() {
         notifyE("Fill all details");
         return;
       }
+      await axios.post("http://localhost:8000/feed/pract_feedback/", dumData)
+        .then((data) => {
+          if (cI >= totSubj) {
+            notifyS({ msg: "Thank you for filling out the feedback survey! You will be logged out soon!" });
+            setTimeout(() => {
+              cookies.remove("user", { path: "/" });
+              cookies.remove("currQ", { path: "/" });
+              cookies.remove("user2", { path: "/" });
+              cookies.remove("theoryFeed", { path: "/" });
+              navigate("/login");
+            }, 2000)
+          }
+          else {
+            notifyS({ msg: "Successful" });
+            cookies.set("currQ", cI + 1, { path: "/", maxAge: 18000, });
+            cookies.remove("theoryFeed", { path: "/" });
+
+            doSetFeedStatus();
+          }
+
+        })
+        .catch((err) => {
+          console.log(err);
+          notifyE("Some error occurred, please try again!");
+
+        })
     }
-    console.log(feedData);
-    notifyS("Success");
+
+    // console.log(feedData);
+    // notifyS(msg = "Success");
 
 
-    cookies.set("currQ", cI + 1, { path: "/", maxAge: 18000, });
-    cookies.remove("theoryFeed", { path: "/" });
+    // cookies.set("currQ", cI + 1, { path: "/", maxAge: 18000, });
+    // cookies.remove("theoryFeed", { path: "/" });
 
-    doSetFeedStatus();
+    // doSetFeedStatus();
 
   }
 
@@ -518,7 +573,16 @@ export default function Home() {
             : <></>
           }
           <div className="divf" style={{ gap: "0.5rem" }}>
-            <input placeholder="Enter any comments..." className="specIns" />
+            <input placeholder="Enter any comments..." className="specIns"
+              onChange={(e) => {
+                const dumDat = { ...feedData };
+                dumDat.comment = e.target.value;
+                setFeedD({ ...dumDat });
+                cookies.set("theoryFeed", JSON.stringify({ ...dumDat }), { path: "/", maxAge: 18000 });
+              }}
+              value={feedData && Object.keys(feedData).length ? feedData.comment : ""}
+
+            />
             <button className="specBut" onClick={() => { submitFeed() }}>Submit</button>
           </div>
         </div>
