@@ -17,6 +17,7 @@ import { allData } from "../../data/basicD";
 import { Link } from "react-router-dom";
 import { getCookie } from "../../action/type";
 import AFNavbar from "../../components/AFNavbar";
+import Swal from "sweetalert2";
 // import AddIcon from '@mui/icons-material/Add';
 
 const style = {
@@ -102,6 +103,7 @@ export default function AFacult() {
     const [opViewD, setOpViewD] = useState(false);
     const [fetMapD, setFetMD] = useState([]);
     const [currFac, setCurrF] = useState();
+    const [fileU, setFileU] = useState();
 
     useEffect(() => {
         fetchDept();
@@ -315,6 +317,48 @@ export default function AFacult() {
 
 
     async function addFact() {
+        if (fileU) {
+            // console.log(fileU);
+            Swal.fire({
+                title: `Do you want to save <u>${fileU.name}</u> ? This can't be undone!`,
+                showDenyButton: true,
+                confirmButtonText: 'Save',
+                denyButtonText: `Don't save`,
+                allowOutsideClick: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    async function postFile() {
+                        await axios.post("http://localhost:8000/api/facultybulk/", { "file": fileU },
+                            {
+                                headers: {
+                                    "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                    // "Accept": "application/json",
+                                    'Authorization': `Token ${getCookie('token')}`
+                                }
+                            }
+                        )
+                            .then(
+                                (res) => {
+                                    // console.log(res)
+                                    Swal.fire('Saved!', '', 'success')
+                                    setOpen(false);
+                                    fetchSubj();
+                                }
+                            )
+                            .catch(
+                                (err) => {
+                                    // console.log(err.response)
+                                    Swal.fire('Changes are not saved', '', 'info')
+                                }
+                            )
+                    }
+                    postFile();
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
+            return;
+        }
         if (!addFac.faculty_name || !addFac.department) {
             notifyE("Please fill All Details!")
             return;
@@ -483,6 +527,10 @@ export default function AFacult() {
                                 <Typography id="modal-modal-title" variant="h6" component="h2">
                                     Add Faculty
                                 </Typography>
+                                <input type="file" className="uplFileIns" onChange={(e) => { setFileU(e.target.files[0]) }} />
+                                <div className="orShowT">
+                                    OR
+                                </div>
                                 <TextField
                                     label="Faculty Name"
                                     id="outlined-size-small"

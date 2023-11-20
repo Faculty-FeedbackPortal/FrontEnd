@@ -25,10 +25,16 @@ export default function Home() {
   const [selMFac, setSelMF] = useState();
   const [currI, setCurrI] = useState(0);
 
+  const [currSF, setCurrSF] = useState(["", ""]);
   const [curCursor, setCurCursor] = useState(false);
   // const [subjD, setSubjD] = useState([]);
   const cookies = new Cookies();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // emf
+    console.log("yoo");
+  }, [feedData])
 
   function authStudent() {
     var anoL = cookies.get("user");
@@ -174,6 +180,7 @@ export default function Home() {
 
   async function doSetFeedStatus() {
 
+    var userAtt = cookies.get("user");
     var uDets = cookies.get("user2");
     var cI = cookies.get("currQ");
     var statusExist = cookies.get("theoryFeed");
@@ -218,7 +225,7 @@ export default function Home() {
       //   comment: commentsD
       // }
       statusExist = {
-        user: "high",
+        user: userAtt,
         faculty: "",
         subject: "",
         department: uDets.department.name,
@@ -226,7 +233,7 @@ export default function Home() {
         batch: uDets.batch,
         semester: uDets.semester,
         f_date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
-        attendance: "high",
+        attendance: userAtt,
         Q1: 0,
         Q2: 0,
         Q3: 0,
@@ -257,7 +264,7 @@ export default function Home() {
         statusExist.faculty = dumDats.theory[cI - 1].faculty.faculty_name;
         statusExist.subject = dumDats.theory[cI - 1].subject.subject;
       }
-
+      setCurrSF([statusExist.subject, statusExist.faculty])
       setFeedD({ ...statusExist });
       cookies.set("theoryFeed", JSON.stringify({ ...statusExist }), { path: "/", maxAge: 18000 });
     }
@@ -310,6 +317,7 @@ export default function Home() {
             cookies.remove("theoryFeed", { path: "/" });
 
             doSetFeedStatus();
+            window.location.reload();
           }
         })
         .catch((err) => {
@@ -349,6 +357,7 @@ export default function Home() {
             cookies.remove("theoryFeed", { path: "/" });
 
             doSetFeedStatus();
+            window.location.reload();
           }
 
         })
@@ -476,16 +485,33 @@ export default function Home() {
                 <span>Batch</span>{uDetD.batch}
               </p>
             </div> : <></>}
-          {feedData && Object.keys(feedData).length ?
-            <>
-              <div className="infoC divf">
+          {/* {feedData && Object.keys(feedData).length ?
+
+            <div className="infoC divf">
+              {feedData.subject ?
                 <p className="infP">
                   <span>Subject</span>{feedData.subject}
-                </p>
+                </p> : <></>
+              }
+              {feedData.faculty ?
                 <p className="infP">
                   <span>Faculty Name</span>{feedData.faculty}
-                </p>
-              </div>
+                </p> : <></>
+              }
+            </div>
+            : <></>} */}
+          {currSF[0].length ?
+            <div className="infoC divf">
+              <p className="infP">
+                <span>Subject</span>{currSF[0]}
+              </p>
+              <p className="infP">
+                <span>Faculty Name</span>{currSF[1]}
+              </p>
+            </div> : <></>
+          }
+          {feedData && Object.keys(feedData).length ?
+            <>
               <div className="quesT">
                 <table>
                   <thead>

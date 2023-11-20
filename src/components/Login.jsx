@@ -38,14 +38,14 @@ export default function Login() {
             notifyE("Fill all details");
             return;
         }
-        if (user1 === "comph" && pass1 === "1234") {
+        if (user1 === "high" && pass1 === "1234") {
             notifyS({ msg: "Successful" });
             cookies.set("user", user1, { path: "/", maxAge: 18000 })
             retId("idDoLog").setAttribute("disabled", "disabled");
             await timer(500);
             navigate("/login/details");
         }
-        else if (user1 === "compl" && pass1 === "1234") {
+        else if (user1 === "low" && pass1 === "1234") {
             notifyS({ msg: "Successful" });
             cookies.set("user", user1, { path: "/", maxAge: 18000 });
             retId("idDoLog").setAttribute("disabled", "disabled");

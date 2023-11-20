@@ -73,6 +73,7 @@
 .reportT td {
     text-align: left;
     color: black;
+    max-width: 15rem;
 }
 
 .reportT th,
@@ -89,8 +90,10 @@
 .dangerZ p {
     /* text-align: left;
     width: 100%; */
-    background: var(--somColor);
-    color: white;
+    /* background: var(--somColor); */
+    background: rgba(94, 0, 0, 0.15);
+    color: rgb(90, 0, 0);
+    font-weight: bold;
     padding: 0.2rem 0.3rem;
     font-size: 1rem;
 }

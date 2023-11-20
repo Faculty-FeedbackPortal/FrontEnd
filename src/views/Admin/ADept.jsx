@@ -204,7 +204,7 @@ export default function ADept() {
 
     async function addDept() {
         if (fileU) {
-            console.log(fileU);
+            // console.log(fileU);
             Swal.fire({
                 title: `Do you want to save <u>${fileU.name}</u> ? This can't be undone!`,
                 showDenyButton: true,
@@ -212,11 +212,7 @@ export default function ADept() {
                 denyButtonText: `Don't save`,
                 allowOutsideClick: false,
             }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    // const { title, content, file } = fileU;
-                    // const allBody = { title, content, file };
-                    // console.log(allBody);
                     async function postFile() {
                         await axios.post("http://localhost:8000/api/departmentbulk/", { "file": fileU },
                             {
@@ -243,7 +239,6 @@ export default function ADept() {
                             )
                     }
                     postFile();
-
                 } else if (result.isDenied) {
                     Swal.fire('Changes are not saved', '', 'info')
                 }

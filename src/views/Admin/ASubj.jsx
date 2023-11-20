@@ -17,6 +17,7 @@ import { allData } from "../../data/basicD";
 import { Link } from "react-router-dom";
 import { getCookie } from "../../action/type";
 import AFNavbar from "../../components/AFNavbar";
+import Swal from "sweetalert2";
 // import AddIcon from '@mui/icons-material/Add';
 
 export default function ASubj() {
@@ -51,6 +52,7 @@ export default function ASubj() {
 
     const [deptAll, setDeptAll] = useState();
     const [subjDat, setSubD] = useState({ rows: [], columns: [] });
+    const [fileU, setFileU] = useState();
 
     async function fetchDept() {
         await axios.get("http://localhost:8000/api/department", {
@@ -108,6 +110,48 @@ export default function ASubj() {
     // };
 
     async function addSubj() {
+        if (fileU) {
+            // console.log(fileU);
+            Swal.fire({
+                title: `Do you want to save <u>${fileU.name}</u> ? This can't be undone!`,
+                showDenyButton: true,
+                confirmButtonText: 'Save',
+                denyButtonText: `Don't save`,
+                allowOutsideClick: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    async function postFile() {
+                        await axios.post("http://localhost:8000/api/subjectbulk/", { "file": fileU },
+                            {
+                                headers: {
+                                    "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                    // "Accept": "application/json",
+                                    'Authorization': `Token ${getCookie('token')}`
+                                }
+                            }
+                        )
+                            .then(
+                                (res) => {
+                                    // console.log(res)
+                                    Swal.fire('Saved!', '', 'success')
+                                    setOpen(false);
+                                    fetchSubj();
+                                }
+                            )
+                            .catch(
+                                (err) => {
+                                    // console.log(err.response)
+                                    Swal.fire('Changes are not saved', '', 'info')
+                                }
+                            )
+                    }
+                    postFile();
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
+            return;
+        }
         if (!addSubjI.department || !addSubjI.semester || !addSubjI.subject) {
             notifyE("Please fill All Details!")
             return;
@@ -219,6 +263,10 @@ export default function ASubj() {
                                 <Typography id="modal-modal-title" variant="h6" component="h2">
                                     Add Subject
                                 </Typography>
+                                <input type="file" className="uplFileIns" onChange={(e) => { setFileU(e.target.files[0]) }} />
+                                <div className="orShowT">
+                                    OR
+                                </div>
                                 <TextField id="filled-basic" label="Subject Name" size="small" value={addSubjI.subject} onChange={(e) => setAddSubjI({ ...addSubjI, subject: e.target.value })} />
                                 {/* <TextField id="filled-basic" label="Semester" size="small" value={sem2} onChange={(e) => { setSem2(e.target.value) }} /> */}
                                 <FormControl sx={{ minWidth: 120 }} size="small">
