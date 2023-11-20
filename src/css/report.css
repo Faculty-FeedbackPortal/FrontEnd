@@ -3,7 +3,7 @@
 }
 
 .headToR {
-    
+
     background: rgba(255, 255, 255, 0.678);
     backdrop-filter: blur(1rem);
     padding: 0.3rem 0.4rem;
@@ -26,7 +26,7 @@
     margin: 1.5rem;
     background: white;
     border: 0.15rem solid var(--somTColor);
-    padding: 0.9rem;
+
     /* width: clamp(30rem, 90vw, 60rem); */
     width: 60rem;
     height: 100%;
@@ -39,6 +39,7 @@
 
 .mainR section {
     width: 100%;
+    padding: 0.9rem;
 }
 
 .pdiv1 {

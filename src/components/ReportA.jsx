@@ -15,6 +15,7 @@ export default function ReportA() {
     const [dumData, setDumD] = useState([0, 0, 0, 0, 0])
     const [reportDat, setReportD] = useState();
     const [theoryQ, setTQ] = useState();
+    const [practQ, setPQ] = useState();
 
     useEffect(() => {
         async function callCalc() {
@@ -47,6 +48,20 @@ export default function ReportA() {
                 })
         }
         fetchAllQs();
+        async function fetchAllPQs() {
+            await axios.get("http://localhost:8000/api/pracquest/", {
+                headers: {
+                    'Authorization': `Token ${getCookie('token')}`
+                }
+            })
+                .then((res) => {
+                    setPQ([...res.data]);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+        fetchAllPQs();
     }, []);
 
 
@@ -77,8 +92,8 @@ export default function ReportA() {
                     <p>Download it from here: <Button variant="outlined" onClick={downloadReport}>Download</Button></p>
                 </div>
                 <div className="divf carReport">
-                    <div id="idMainReport" className="divf fdirc mainR">
-                        <section className="divf fdirc">
+                    <div className="divf fdirc mainR">
+                        <section id="idMainReport" className="divf fdirc">
                             <div className="divf jusSB" style={{ "width": "100%" }}>
                                 <div className="divf fGapS ">
                                     <img src={somLogo} className="somLogo" />
@@ -92,7 +107,7 @@ export default function ReportA() {
                             <div className="divf fdirc pdiv1 col-b f1-1 boldT">
                                 <p>Faculty Feedback Report 1 - 2023-24 Odd Semester</p>
                                 <p>Faculty - {reportDat ? reportDat.faculty : ""} | Subject - {reportDat ? reportDat.subject : ""}</p>
-                                <p>Faculty Feedback - Batch {reportDat ? reportDat.batch : ""}</p>
+                                <p>Theory Feedback - Batch {reportDat ? reportDat.batch : ""}</p>
                             </div>
                             <table className="reportT">
                                 <thead>
@@ -124,23 +139,22 @@ export default function ReportA() {
                                                 <tr>
                                                     <td>{index + 1}</td>
                                                     <td>{theoryQ[index] ? theoryQ[index].question : "Sample question"}</td>
-                                                    <td>{reportDat.high.theory_q[index]}</td>
-                                                    <td>{reportDat.low.theory_q[index]}</td>
+                                                    <td>{reportDat.above.theory_q[index]}</td>
+                                                    <td>{reportDat.below.theory_q[index]}</td>
                                                 </tr>
                                             </>
                                         )
                                     })}
-
                                 </tbody>
                             </table>
                             <div className="divf fdirc pdiv1 dangerZ">
-                                <p>Low Attendance Students Count: O Score: 0.00 = 0%</p>
-                                <p>High Attendance Students Count: 15 Score: 4.0 = 95%</p>
-                                <p>Total Number of Students Count: 15 | Total Score: 4.0 = 95%</p>
+                                <p>Low Attendance Students Count: {reportDat ? reportDat.below.lowt : 0} | Score: {reportDat ? reportDat.below.theory : 0} = {reportDat ? (reportDat.below.theory / 4) * 100 : 0}</p>
+                                <p>High Attendance Students Count: {reportDat ? reportDat.above.hight : 0} | Score: {reportDat ? reportDat.above.theory : 0} = {reportDat ? (reportDat.above.theory / 4) * 100 : 0}</p>
+                                <p>Total Number of Students Count: {reportDat ? reportDat.totalt : ""} | Total Score: {reportDat ? (reportDat.above.theory + reportDat.below.theory) / 2 : ""}</p>
                             </div>
                         </section>
                         <div className="sectDivider"></div>
-                        <section className="divf fdirc">
+                        <section id="idMainReport" className="divf fdirc">
                             <div className="divf jusSB" style={{ "width": "100%" }}>
                                 <div className="divf fGapS ">
                                     <img src={somLogo} className="somLogo" />
@@ -154,7 +168,7 @@ export default function ReportA() {
                             <div className="divf fdirc pdiv1 col-b f1-1 boldT">
                                 <p>Faculty Feedback Report 1 - 2023-24 Odd Semester</p>
                                 <p>Faculty - {reportDat ? reportDat.faculty : ""} | Subject - {reportDat ? reportDat.subject : ""}</p>
-                                <p>Faculty Feedback - Batch {reportDat ? reportDat.batch : ""}</p>
+                                <p>Practical Feedback - Batch {reportDat ? reportDat.batch : ""}</p>
                             </div>
                             <table className="reportT">
                                 <thead>
@@ -180,29 +194,28 @@ export default function ReportA() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {reportDat && theoryQ && theoryQ.map((el, index) => {
+                                    {reportDat && practQ && practQ.map((el, index) => {
                                         return (
                                             <>
                                                 <tr>
                                                     <td>{index + 1}</td>
-                                                    <td>{theoryQ[index] ? theoryQ[index].question : "Sample question"}</td>
-                                                    <td>{reportDat.high.theory_q[index]}</td>
-                                                    <td>{reportDat.low.theory_q[index]}</td>
+                                                    <td>{practQ[index] ? practQ[index].question : "Sample question"}</td>
+                                                    <td>{reportDat.above.practical_q[index]}</td>
+                                                    <td>{reportDat.below.practical_q[index]}</td>
                                                 </tr>
                                             </>
                                         )
                                     })}
-
                                 </tbody>
                             </table>
                             <div className="divf fdirc pdiv1 dangerZ">
-                                <p>Low Attendance Students Count: O Score: 0.00 = 0%</p>
-                                <p>High Attendance Students Count: 15 Score: 4.0 = 95%</p>
-                                <p>Total Number of Students Count: 15 | Total Score: 4.0 = 95%</p>
+                                <p>Low Attendance Students Count: {reportDat ? reportDat.below.lowp : 0} | Score: {reportDat ? reportDat.below.practical : 0} = {reportDat ? (reportDat.below.practical / 4) * 100 : 0}</p>
+                                <p>High Attendance Students Count: {reportDat ? reportDat.above.highp : 0} | Score: {reportDat ? reportDat.above.practical : 0} = {reportDat ? (reportDat.above.practical / 4) * 100 : 0}</p>
+                                <p>Total Number of Students Count: {reportDat ? reportDat.totalp : ""} | Total Score: {reportDat ? (reportDat.above.practical + reportDat.below.practical) / 2 : ""}</p>
                             </div>
                         </section>
                     </div>
-                    
+
                 </div>
             </div>
         </>
